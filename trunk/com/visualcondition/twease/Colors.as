@@ -13,16 +13,12 @@ class com.visualcondition.twease.Colors {
 	static var version:Number = 1.9;
 	static var cl = com.visualcondition.twease.Colors;
 	static var clname:String = 'Colors';
-	static var exfuncs:Array = ['setColor', 'getColorObject', 'combinecolors'];
+	static var exfuncs:Array = ['setColor', 'getColorObject'];
 	static var exprops:Object = {
 		Colors: ['brightness', 'brightOffset', 'contrast', 'invertColor', 'tint'],
 		nullhelpers: ['tintPercent']
 	};
-	static var combinecolors:Boolean = false;
-	
-	static var nameForCO:String = 'colorObject';
-	static var nameForCT:String = 'colorTrans';
-	static var nameForCOC:String = 'colorObjectCombine';
+
 	
 	//standard class init
 	static function init():Void {
@@ -31,59 +27,17 @@ class com.visualcondition.twease.Colors {
 	
 	//sets up special tween property and inserts an applier to update the prop
 	static function setup(prop:String, tweenobj:Object):Void {
-		var cop:Color = tweenobj.target[nameForCO];
-		var copobj:Object = tweenobj.target[nameForCT];
-		var copobjf:Object = tweenobj.target[nameForCOC];
-		var rn:Object = Twease.extendedapplies[tweenobj.target + "-" + clname];
-		if(cop == undefined){
-			cop = tweenobj.target[nameForCO] = new Color(tweenobj.target);
-			copobj = tweenobj.target[nameForCT] = cop.getTransform();
-		}
-		if(rn == undefined){
-			var masc:Object = {};
-			masc.colorobj = cop;
-			masc.currentcolor = copobj;
-			rn = Extend.insertapplier(tweenobj, clname, Colors.colorupdater, masc);
-		}
-		var cch:Boolean = (colorPropCount(tweenobj) >= 2 && tweenobj.stack != true) ? true : Twease.combinecolors;
-		var cccs:Boolean = (cch) ? copobjf : null;
-		var amount:Number = (prop == 'tint') ? (tweenobj.tintPercent == undefined) ? 100 : tweenobj.tintPercent : tweenobj[prop];
-		var temptween:Object = Twease.getColorObject(prop, amount, tweenobj[prop], cccs);
-		tweenobj.target[nameForCOC] = temptween;
-		for ( var i in tweenobj ) if(Twease.compareInObject(i, Twease.baseprops)) temptween[i] = tweenobj[i];
-		temptween.stack = (temptween.stack == undefined && colorPropCount(tweenobj) >= 2) ? false : temptween.stack;
-		temptween.target = tweenobj.target[nameForCT];
-		rn.realtween = Twease.tween(temptween);
+
 	};
 	
 	//this is the function that gets called on the applier update every frame
 	static function colorupdater(ao:Object):Void {
-		ao.tempobj.colorobj.setTransform(ao.tempobj.currentcolor);
 		//trace(ao.target);
-	};
-	
-	//returns how many color properties in a tweenobject
-	static function colorPropCount(obj:Object):Number{
-		var ct:Number = 0;
-		for ( var i in obj ){
-			if(Twease.compareInObject(i, exprops.Colors)) ct++;
-		};
-		return ct;
 	};
 	
 	//sets a color and sets it up for future tweening
 	static function setColor(target:Object, type:String, amt:Number, rgb:Object):Void {
-		var nc = target[nameForCO] = (target[nameForCO] == undefined) ? new Color(target) : target[nameForCO];
-		var ct = target[nameForCT] = (target[nameForCT] == undefined) ? nc.getTransform() : target[nameForCT];
-		var coc = target[nameForCOC];
-		var cccs:Boolean = (Twease.combinecolors) ? coc : null;
-		var ncs = target[nameForCOC] = target[nameForCT] = getColorObject(type, amt, rgb, cccs);
-		nc.setTransform(ncs);
-		if(ncs == getColorObject()){
-			delete target[nameForCO];
-			delete target[nameForCT];
-			delete target[nameForCOC];
-		}
+		(new Color(target)).setTransform(getColorObject(type,amt,rgb));
 	}
 	
 	//returns the magical object that contains the transformation information
