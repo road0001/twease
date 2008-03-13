@@ -122,7 +122,7 @@ dynamic class com.visualcondition.twease.Twease {
 				delete o.startfunc;
 				var res:Number;
 				if(o.rate != undefined){
-					res = o.target[o.prop] + o.rate;
+					res = (o.newval-(Math.abs(o.rateleft/o.rate)*o.rate));
 					o.rateleft -= Math.abs(o.rate);
 				} else res = o.ease(tmr, o.startpos, o.dif, o.time, o.extra1, o.extra2);
 				o.easeposition = (res-o.startpos)/(o.newval-o.startpos);
