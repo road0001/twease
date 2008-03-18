@@ -27,12 +27,17 @@ class com.visualcondition.twease.Colors {
 	
 	//sets up special tween property and inserts an applier to update the prop
 	static function setup(prop:String, tweenobj:Object):Void {
-
+		var otg:Object = (tweenobj.target['colorsobj'] == undefined) ? ((new Color(tweenobj.target)).getTransform()) : tweenobj.target['colorsobj'];
+		var amount:Number = (prop == 'tint') ? (tweenobj.tintPercent == undefined) ? 100 : tweenobj.tintPercent : tweenobj[prop];
+		var temptween:Object = getColorObject(prop, amount, tweenobj[prop], (tweenobj.target['colorsobj'] == undefined) ? null : tweenobj.target['colorsobj']);
+        for ( var i in tweenobj ) if(Twease.compareInObject(i, Twease.baseprops)) temptween[i] = tweenobj[i];
+		Extend.createSubtween(tweenobj.target, clname, otg, temptween, colorupdater);
+		tweenobj.target['colorsobj'] = temptween;
 	};
 	
 	//this is the function that gets called on the applier update every frame
 	static function colorupdater(ao:Object):Void {
-		//trace(ao.target);
+		(new Color(ao.target)).setTransform(ao.temptweentarget);
 	};
 	
 	//sets a color and sets it up for future tweening

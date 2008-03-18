@@ -40,7 +40,6 @@ class com.visualcondition.twease.Extend {
 	//initiate extended props for Twease
 	static function initExtendedProps(nexprops:Object):Void{
 		if (Twease.extendedprops == undefined) Twease.extendedprops = {};
-		if (Twease.extendedapplies == undefined) Twease.extendedapplies = {};
 		for ( var i in nexprops ){
 			var pr:Array = nexprops[i];
 			for ( var j in pr ){
@@ -55,31 +54,24 @@ class com.visualcondition.twease.Extend {
 		if(parr[1] != 'nullhelpers') Twease.extensions[parr[1]].setup(parr[0], tobj);
 	};
 	
-	//garbage collect
-	static function garbageCollect():Void {
-		//trace("Extended GC");
-		for ( var i in Twease.extendedapplies ){
-			var ap:Object = Twease.extendedapplies[i];
-			if(ap.realtween[0] == undefined) delete Twease.extendedapplies[i];
-		};
-	};
-	
-	//create applier
-	static function insertapplier(tweenobj:Object, prop:String, func:Function, temptween:Object):Object{
-		var nname:String = tweenobj.target + "-" + prop;
-		if(nname == "[object Object]" + "-" + prop){
-			nname = "Object" + Math.round(Math.random()*1000);
-			tweenobj.target['eaname'] = nname;
-			nname += "-" + prop;
+	static function createSubtween(target:Object, prop:String, tto, tobj:Object, func:Function):Object{
+		var tg:Object = (Twease.tweens[target] == undefined) ? Twease.tweens[target] = {propcount:0} : Twease.tweens[target];
+		if(tg.active == undefined){
+			tg.active = true;
+			Twease.activetweens[target] = {};
 		}
-		return Twease.extendedapplies[nname] = {target:tweenobj.target, tempobj:temptween, applyfunc:func, realtween:null, eaname:nname};
-	};
-	
-	//loop to apply extened appliers
-	static function applier():Void{
-		for ( var i in Twease.extendedapplies ){
-			var ap:Object = Twease.extendedapplies[i];
-			ap.applyfunc(ap);
-		};
+		var dostack:Boolean = (tobj.stack != undefined) ? tobj.stack : Twease.stacking;
+		if(tg[prop] != undefined && !dostack) tg.propcount--;
+		var tarr:Array = (tg[prop] == undefined || !dostack) ? tg[prop] = [] : tg[prop];
+		if(tarr.active == undefined) {
+			tarr.active = true;
+			tg.propcount++;
+			Twease.activetweens[target][prop] = true;
+		}
+		tarr.subtween = true;
+		var sto:Object = tarr[tarr.push({target: target, temptweentarget: tto, originaltobj: tobj, applyfunc: func})-1];
+		tobj.target = sto.temptweentarget;
+		sto.tweenobject = Twease.tween(tobj, true);
+		return sto;
 	};
 }
