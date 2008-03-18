@@ -70,8 +70,7 @@ class com.visualcondition.twease.Extend {
 		}
 		tarr.subtween = true;
 		var sto:Object = tarr[tarr.push({target: target, temptweentarget: tto, originaltobj: tobj, applyfunc: func})-1];
-		tobj.target = sto.temptweentarget;
-		sto.tweenobject = Twease.tween(tobj, true);
+		sto.tweenobject = Twease.tween(tobj, sto.temptweentarget, true);
 		return sto;
 	};
 }

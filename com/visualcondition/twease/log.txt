@@ -13,9 +13,11 @@ v2.0 Beta (03/10/08)
     -Texts class lets you tween Object-strings (var mytext:Object = {text:"A"}) based on a given characterset
     *-Colors class lets you tween color transformation objects such as tint, brightness and contrast
     -Twease.render() method allows manual rendering of non-engine managed tween objects
-    -Twease.tween() 2nd parameter for non-managed tween, true makes a new object, passing an object uses that
+    -Twease.tween() 2nd parameter for sequence and single tween target-overrides 
+    -Twease.tween() 3rd parameter for non-managed tween, true makes a new object, passing an object uses that
     -Tween object has easeposition property that returns the position of a tween on an ease path (0-1)
     -Stack option in tween call to enable stacking on a per-tween basis
+    -Cycles support for function-only calls including delays
     -Colors: static color functions: 'setColor', 'getColorObject'
     -Twease: baseprops array and compareInObject method
     
