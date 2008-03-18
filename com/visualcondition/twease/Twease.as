@@ -119,15 +119,16 @@ dynamic class com.visualcondition.twease.Twease {
 			if(o.delay == 0){
 				o.startfunc(o.target, o.prop, o.queue[0]);
 				delete o.startfunc;
-				var res:Number;
-				if(o.rate != undefined){
+				var res:Number, nres:Number;
+				if(o.rate == undefined) res = o.ease(tmr, o.startpos, o.dif, o.time, o.extra1, o.extra2);
+				else{
 					res = (o.newval-(Math.abs(o.rateleft/o.rate)*o.rate));
 					o.rateleft -= Math.abs(o.rate);
-				} else res = o.ease(tmr, o.startpos, o.dif, o.time, o.extra1, o.extra2);
+				}
 				o.easeposition = (res-o.startpos)/(o.newval-o.startpos);
-				var nres:Number;
-				if(o.bezier.length == 1){nres = o.startpos + (o.easeposition*(2*(1-o.easeposition)*(o.bezier[0]-o.startpos)+(o.easeposition*o.dif)));}
-				else if(o.bezier.length > 1){
+				if(o.bezier.length < 1) nres = res;
+				else if(o.bezier.length == 1)nres = o.startpos + (o.easeposition*(2*(1-o.easeposition)*(o.bezier[0]-o.startpos)+(o.easeposition*o.dif)));
+				else {
 					var b1:Number, b2:Number;
 					var bpos:Number = Math.floor(o.easeposition*o.bezier.length);
 					var ipos:Number = (o.easeposition-(bpos*(1/o.bezier.length)))*o.bezier.length;
@@ -142,16 +143,16 @@ dynamic class com.visualcondition.twease.Twease {
 						b2 = (o.bezier[bpos]+o.bezier[bpos+1])/2;
 					}
 					nres = b1+ipos*(2*(1-ipos)*(o.bezier[bpos]-b1) + ipos*(b2 - b1));
-				} else {nres = res;}
+				}
 				o.target[o.prop] = (o.round) ? Math.round(nres) : nres;
 				o.upfunc(o.target, o.prop, o.queue[0]);
 			} else {
 				if(gtt >= o.starttime+o.delay){
+					trace("ghdfgh");
 					o.oldelay = o.delay;
 					o.delay = 0;
 					o.starttime = gtt;
 					if(o.rate != undefined){
-						o.starttime = gtt;
 						o.rateleft -= o.rateleft*o.startprogress;
 						o.target[o.prop] = o.startpos += o.dif *= o.startprogress;
 					} else o.progdif = o.time*o.startprogress;
@@ -193,7 +194,9 @@ dynamic class com.visualcondition.twease.Twease {
 		if(ao[0] == undefined){
 			if(active == undefined || active == null) setActive(true);
 			if(tweens == undefined) tweens = {};
-			var delay:Number = (ao.delay == undefined) ? 0 : ao.delay*1000;
+			var delay:Number = (ao.delay == undefined) ? 0.00001 : ao.delay*1000;
+			var ncycles:Number = (ao.cycles == undefined) ? 1 : ao.cycles;
+			var snt:Number = getTimer();
 			var tg:Object;
 			if(ao.func != undefined && ao.target == undefined){
 				tg = (tweens.functions == undefined) ? tweens.functions = {propcount:0} : tweens.functions;				
@@ -206,7 +209,7 @@ dynamic class com.visualcondition.twease.Twease {
 				tarr.active = true;
 				activetweens.functions[prop] = true;
 				tg.propcount++;
-				tarr.push({prop:prop, starttime:getTimer(), time:0, func:ao.func, delay:delay, queue:ao.queue, cycles:1});
+				tarr.push({prop:prop, starttime:snt, time:0, func:ao.func, delay:delay, queue:ao.queue, cycles:ncycles, progdif:0});
 			} else {
 				var dostack:Boolean = (ao.stack != undefined) ? ao.stack : stacking;
 				var ease:Function;
@@ -214,7 +217,6 @@ dynamic class com.visualcondition.twease.Twease {
 					if(ao.ease == undefined) ease = extensions.Easing.linear;
 					else ease = (typeof ao.ease == 'string') ? extensions.Easing[ao.ease] : ao.ease;
 				} else {ease = (ao.ease == undefined) ? none : ao.ease;}
-				
 				if(nonm === true) tg = {propcount:0, active:true};
 				else if(typeof nonm == 'object') tg = nonm;
 				else {
@@ -254,7 +256,7 @@ dynamic class com.visualcondition.twease.Twease {
 								var bzarr:Array = [];
 								var beza:Array = (ao.bezier.length != undefined) ? ao.bezier : [ao.bezier];
 								for ( var b in beza ){if(beza[b][prop] != undefined) bzarr.push((typeof(beza[b][prop]) == 'string') ? ftv + Number(beza[b][prop]) : beza[b][prop]);};
-								tarr.push({target:ao.target, cycles:(ao.cycles == undefined) ? 1 : ao.cycles, prop:prop, ease:ease, starttime:getTimer()+1, queue:ao.queue, startpos:ftv, value:value, dif:dif, newval:newval, time:(ao.time == undefined && ao.rate == undefined) ? 0 : ao.time*1000, rate:(ao.rate != undefined) ? ((ftv > newval) ? -1*ao.rate : ao.rate) : undefined, func:ao.func, startfunc:ao.startfunc, upfunc:ao.upfunc, round:(ao.round == undefined) ? roundresults : ao.round, delay:delay+1, extra1:ao.extra1, extra2:ao.extra2, bezier:bzarr, easeposition:null, rateleft:Math.abs(dif), startprogress:(ao.progress == undefined) ? 0 : ao.progress, progdif:0});
+								tarr.push({target:ao.target, cycles:ncycles, prop:prop, ease:ease, starttime:snt, queue:ao.queue, startpos:ftv, value:value, dif:dif, newval:newval, time:(ao.time == undefined && ao.rate == undefined) ? 0 : ao.time*1000, rate:(ao.rate != undefined) ? ((ftv > newval) ? -1*ao.rate : ao.rate) : undefined, func:ao.func, startfunc:ao.startfunc, upfunc:ao.upfunc, round:(ao.round == undefined) ? roundresults : ao.round, delay:delay+1, extra1:ao.extra1, extra2:ao.extra2, bezier:bzarr, easeposition:null, rateleft:Math.abs(dif), startprogress:(ao.progress == undefined) ? 0 : ao.progress, progdif:0});
 							};
 						};
 					}
