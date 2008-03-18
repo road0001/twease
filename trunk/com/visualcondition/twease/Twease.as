@@ -59,7 +59,6 @@ dynamic class com.visualcondition.twease.Twease {
 			tc++;
 			if(tweens[i].propcount == 0) {delete tweens[i]; delete activetweens[i]};
 		};
-		if(Twease.extendedprops != undefined) extensions.Extend.garbageCollect();
 		if(tc == 0) setActive(null);
 	}
 	static function advance(id:Number, position:Number):Number {
@@ -166,14 +165,29 @@ dynamic class com.visualcondition.twease.Twease {
 		var gtt:Number = getTimer();
 		for (var i:String in activetweens){
 			for (var j:String in activetweens[i]){
-				if(render(tweens[i][j], gtt)){
+				var ddi:Boolean;
+				if(tweens[i][j].subtween){
+					ddi = true;
+					var nst:Object = tweens[i][j][0];
+					for ( var c in nst.tweenobject ){
+						if(render(nst.tweenobject[c], gtt)) delete nst.tweenobject[c];
+						ddi = false;
+					};
+					if(ddi){
+						if(tweens[i][j][1] != undefined){
+							ddi = false;
+							tweens[i][j].shift();
+						}
+					}
+					nst.applyfunc(nst);
+				} else ddi = render(tweens[i][j], gtt);
+				if(ddi){
 					delete tweens[i][j];
 					delete activetweens[i][j];
 					tweens[i].propcount--;
 				}
 			}
 		}
-		extensions.Extend.applier();
 	};
 	static function tween(ao:Object, nonm:Boolean, seqt:Object):Object {
 		if(ao[0] == undefined){
