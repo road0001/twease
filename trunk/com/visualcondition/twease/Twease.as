@@ -148,7 +148,6 @@ dynamic class com.visualcondition.twease.Twease {
 				o.upfunc(o.target, o.prop, o.queue[0]);
 			} else {
 				if(gtt >= o.starttime+o.delay){
-					trace("ghdfgh");
 					o.oldelay = o.delay;
 					o.delay = 0;
 					o.starttime = gtt;
@@ -190,7 +189,7 @@ dynamic class com.visualcondition.twease.Twease {
 			}
 		}
 	};
-	static function tween(ao:Object, nonm:Boolean, seqt:Object):Object {
+	static function tween(ao:Object, tovr:Object, nonm:Boolean):Object {
 		if(ao[0] == undefined){
 			if(active == undefined || active == null) setActive(true);
 			if(tweens == undefined) tweens = {};
@@ -211,6 +210,7 @@ dynamic class com.visualcondition.twease.Twease {
 				tg.propcount++;
 				tarr.push({prop:prop, starttime:snt, time:0, func:ao.func, delay:delay, queue:ao.queue, cycles:ncycles, progdif:0});
 			} else {
+				var ntarg:Object = (tovr == undefined || tovr == null) ? ao.target : tovr;
 				var dostack:Boolean = (ao.stack != undefined) ? ao.stack : stacking;
 				var ease:Function;
 				if(extensions.Easing != undefined){
@@ -220,10 +220,10 @@ dynamic class com.visualcondition.twease.Twease {
 				if(nonm === true) tg = {propcount:0, active:true};
 				else if(typeof nonm == 'object') tg = nonm;
 				else {
-					tg = (tweens[ao.target] == undefined) ? tweens[ao.target] = {propcount:0} : tweens[ao.target];
+					tg = (tweens[ntarg] == undefined) ? tweens[ntarg] = {propcount:0} : tweens[ntarg];
 					if(tg.active == undefined){
 						tg.active = true;
-						activetweens[ao.target] = {};
+						activetweens[ntarg] = {};
 					}
 				}
 				for( var i:String in ao ){
@@ -247,16 +247,16 @@ dynamic class com.visualcondition.twease.Twease {
 								if(tarr.active == undefined) {
 									tarr.active = true;
 									tg.propcount++;
-									if(nonm != true) activetweens[ao.target][prop] = true;
+									if(nonm != true) activetweens[ntarg][prop] = true;
 								}								
 								var ftv:Number = tarr[tarr.length-1].startpos;
-								ftv = (ftv == undefined) ? ((i == 'index') ? ao.target[newa[q][s][0]] : ao.target[prop]) : ftv;
+								ftv = (ftv == undefined) ? ((i == 'index') ? ntarg[newa[q][s][0]] : ntarg[prop]) : ftv;
 								var newval:Number = (typeof(value) == 'string') ? ftv + Number(value) : value;
 								var dif:Number = (ftv > newval) ? -1*Math.abs(ftv-newval) : Math.abs(ftv-newval);
 								var bzarr:Array = [];
 								var beza:Array = (ao.bezier.length != undefined) ? ao.bezier : [ao.bezier];
 								for ( var b in beza ){if(beza[b][prop] != undefined) bzarr.push((typeof(beza[b][prop]) == 'string') ? ftv + Number(beza[b][prop]) : beza[b][prop]);};
-								tarr.push({target:ao.target, cycles:ncycles, prop:prop, ease:ease, starttime:snt, queue:ao.queue, startpos:ftv, value:value, dif:dif, newval:newval, time:(ao.time == undefined && ao.rate == undefined) ? 0 : ao.time*1000, rate:(ao.rate != undefined) ? ((ftv > newval) ? -1*ao.rate : ao.rate) : undefined, func:ao.func, startfunc:ao.startfunc, upfunc:ao.upfunc, round:(ao.round == undefined) ? roundresults : ao.round, delay:delay+1, extra1:ao.extra1, extra2:ao.extra2, bezier:bzarr, easeposition:null, rateleft:Math.abs(dif), startprogress:(ao.progress == undefined) ? 0 : ao.progress, progdif:0});
+								tarr.push({target:ntarg, cycles:ncycles, prop:prop, ease:ease, starttime:snt, queue:ao.queue, startpos:ftv, value:value, dif:dif, newval:newval, time:(ao.time == undefined && ao.rate == undefined) ? 0 : ao.time*1000, rate:(ao.rate != undefined) ? ((ftv > newval) ? -1*ao.rate : ao.rate) : undefined, func:ao.func, startfunc:ao.startfunc, upfunc:ao.upfunc, round:(ao.round == undefined) ? roundresults : ao.round, delay:delay+1, extra1:ao.extra1, extra2:ao.extra2, bezier:bzarr, easeposition:null, rateleft:Math.abs(dif), startprogress:(ao.progress == undefined) ? 0 : ao.progress, progdif:0});
 							};
 						};
 					}
@@ -266,7 +266,7 @@ dynamic class com.visualcondition.twease.Twease {
 		} else {
 			if(queue == undefined) queue = [];
 			var nqp:Number = queue.push(ao)-1;
-			queue[nqp].target = seqt;
+			queue[nqp].target = tovr;
 			return advance(nqp, 0);
 		}
 	}
