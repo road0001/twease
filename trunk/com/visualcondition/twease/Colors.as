@@ -37,6 +37,7 @@ class com.visualcondition.twease.Colors {
 	
 	//this is the function that gets called on the applier update every frame
 	static function colorupdater(ao:Object):Void {
+		ao.temptweentarget.aa = ao.target._alpha;
 		(new Color(ao.target)).setTransform(ao.temptweentarget);
 	};
 	
