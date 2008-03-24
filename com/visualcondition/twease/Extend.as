@@ -50,11 +50,11 @@ class com.visualcondition.twease.Extend {
 	
 	//prop setup function
 	static function propSetup(parr:Array, tobj:Object):Void{
-		//trace('Extended Property: ' + parr[0] + ' | Classification: ' + parr[1]);
 		if(parr[1] != 'nullhelpers') Twease.extensions[parr[1]].setup(parr[0], tobj);
 	};
 	
-	static function createSubtween(target:Object, prop:String, tto, tobj:Object, func:Function):Object{
+	//target object (the real thing being tweened) passed as an object, or a string to use a variable in the helper object, or "helper" to use the helper object as the target itself
+	static function createSubtween(target:Object, prop:String, tto, tobj:Object, func:Function, helper:Object):Object{
 		var tg:Object = (Twease.tweens[target] == undefined) ? Twease.tweens[target] = {propcount:0} : Twease.tweens[target];
 		if(tg.active == undefined){
 			tg.active = true;
@@ -69,7 +69,8 @@ class com.visualcondition.twease.Extend {
 			Twease.activetweens[target][prop] = true;
 		}
 		tarr.subtween = true;
-		var sto:Object = tarr[tarr.push({target: target, temptweentarget: tto, originaltobj: tobj, applyfunc: func})-1];
+		var sto:Object = tarr[tarr.push({target: target, originaltobj: tobj, applyfunc: func, helper:helper})-1];
+		sto.temptweentarget = (typeof tto == 'string') ? (tto == 'helper') ? sto.helper : sto.helper[tto] : tto;
 		sto.tweenobject = Twease.tween(tobj, sto.temptweentarget, true);
 		return sto;
 	};

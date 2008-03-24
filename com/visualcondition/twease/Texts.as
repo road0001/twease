@@ -53,9 +53,11 @@ class com.visualcondition.twease.Texts {
 				masc.oldlnum = findIndexOf(masc.oldletter, masc.charset);
 				masc.newlnum = findIndexOf(masc.newletter, masc.charset);
 				masc.curlnum = new Number(masc.oldlnum);
-				rn = Extend.insertapplier(tweenobj, clname, Texts.textsupdater, masc);
-				tweenobj.target = rn.tempobj;
+				tweenobj.round = true;
 				tweenobj.curlnum = new Number(masc.newlnum);
+				delete tweenobj[prop];
+                delete tweenobj.charset;
+				Extend.createSubtween(tweenobj.target, clname, 'helper', tweenobj, textsupdater, masc);
 			break;
 			case 'words':
 				masc.charset = chs;
@@ -87,27 +89,25 @@ class com.visualcondition.twease.Texts {
 					};
 					masc.newiarr.reverse();
 				}
-				rn = Extend.insertapplier(tweenobj, clname, Texts.textsupdater, masc);
-				tweenobj.target = rn.tempobj.curiarr;
 				tweenobj.array = masc.newiarr;
+				tweenobj.round = true;
+				delete tweenobj[prop];
+                delete tweenobj.charset;
+				Extend.createSubtween(tweenobj.target, clname, 'curiarr', tweenobj, textsupdater, masc);
 			break;
 		}
-		tweenobj.round = true;
-		delete tweenobj[prop];
-		delete tweenobj.charset;
-		rn.realtween = Twease.tween(tweenobj);
 	};
 	
 	//this is the function that gets called on the applier update every frame
 	static function textsupdater(ao:Object):Void {
-		switch(ao.tempobj.prop){
+		switch(ao.helper.prop){
 			case "character":
-				ao.target.text = ao.tempobj.charset[ao.tempobj.curlnum];
+				ao.target.text = ao.helper.charset[ao.temptweentarget.curlnum];
 			break;
 			case 'words':
 				var nt:String = "";
-				for ( var i in ao.tempobj.curiarr ){
-					nt += ao.tempobj.charset[ao.tempobj.curiarr[i]];
+				for ( var i in ao.temptweentarget ){
+					nt += ao.helper.charset[ao.temptweentarget[i]];
 				};
 				ao.target.text = nt;
 			break;
