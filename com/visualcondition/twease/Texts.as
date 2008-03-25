@@ -2,7 +2,7 @@
 //  Twease Extended Texts
 // 
 // 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License
-//  Creation: 03/04/08
+//  Creation: 03/25/08
 //  Author: Andrew Fitzgerald
 //  Homepage: http://play.visualcondition.com/twease/
 //
@@ -72,9 +72,7 @@ class com.visualcondition.twease.Texts {
 					masc.oldiarr.push(findIndexOf(masc.oldwarr[i], masc.charset));
 					masc.curiarr.push(findIndexOf(masc.oldwarr[i], masc.charset));
 				};
-				for ( var i in masc.newwarr ){
-					masc.newiarr.push(findIndexOf(masc.newwarr[i], masc.charset));
-				};
+				for ( var i in masc.newwarr ) masc.newiarr.push(findIndexOf(masc.newwarr[i], masc.charset));
 				if(masc.oldwarr.length < masc.newwarr.length){
 					var samt:Number = masc.newwarr.length - masc.oldwarr.length;
 					for ( var i=0; i<samt; i++ ) {
@@ -84,9 +82,7 @@ class com.visualcondition.twease.Texts {
 				} else if(masc.oldwarr.length > masc.newwarr.length){
 					var samt:Number = masc.oldwarr.length - masc.newwarr.length;
 					masc.newiarr.reverse();
-					for ( var i=0; i<samt; i++ ) {
-						masc.newiarr.push(0);
-					};
+					for ( var i=0; i<samt; i++ ) masc.newiarr.push(0);
 					masc.newiarr.reverse();
 				}
 				tweenobj.array = masc.newiarr;
@@ -106,9 +102,7 @@ class com.visualcondition.twease.Texts {
 			break;
 			case 'words':
 				var nt:String = "";
-				for ( var i in ao.temptweentarget ){
-					nt += ao.helper.charset[ao.temptweentarget[i]];
-				};
+				for ( var i in ao.temptweentarget ) nt += ao.helper.charset[ao.temptweentarget[i]];
 				ao.target.text = nt;
 			break;
 		}

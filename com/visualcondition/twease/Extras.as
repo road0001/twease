@@ -2,7 +2,7 @@
 //  Twease Extended Extra Features
 // 
 // 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License
-//  Creation: 02/21/08
+//  Creation: 03/25/08
 //  Author: Andrew Fitzgerald
 //  Homepage: http://play.visualcondition.com/twease/
 //
@@ -20,7 +20,7 @@ class com.visualcondition.twease.Extras {
 	}
 	
 	static function setup(prop:String):Void{
-		trace("SUPER EXTRAS");
+	
 	};
 	
 	//get tweens function
@@ -28,9 +28,7 @@ class com.visualcondition.twease.Extras {
 		var a:Array = [];		
 		for ( var i in Twease.tweens[target] )	{
 			if(i != 'active' && i != 'propcount'){
-				if(active) {
-					if(Twease.tweens[target][i].active) a.push(i)
-				}
+				if(active) if(Twease.tweens[target][i].active) a.push(i)
 				else a.push(i);
 			}
 		}
