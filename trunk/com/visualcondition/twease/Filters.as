@@ -2,10 +2,17 @@
 //  Twease Extended Filters
 // 
 // 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License
-//  Creation: 02/21/08
+//  Creation: 03/25/08
 //  Author: Andrew Fitzgerald
 //  Homepage: http://play.visualcondition.com/twease/
 //
+
+//////////////////////////////
+
+//////NOT FUNCTIONAL YET
+
+/////////////////
+
 
 import com.visualcondition.twease.*;
 import flash.filters.*;

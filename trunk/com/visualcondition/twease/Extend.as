@@ -2,7 +2,7 @@
 //  Twease Extended Beta - Extended Functions For Twease
 // 
 // 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License
-//  Creation: 08/21/07 | Updated: 02/21/08
+//  Creation: 08/21/07 | Updated: 03/25/08
 //  Author: Andrew Fitzgerald
 //  Homepage: http://play.visualcondition.com/twease/
 //
@@ -24,17 +24,13 @@ class com.visualcondition.twease.Extend {
 	
 	//checks to see if property is an exteded property
 	static function checkExtendedProp(prop):Boolean{
-		for ( var i in Twease.extendedprops ){
-			if(Twease.extendedprops[i][0] == prop) return true;
-		};
+		for ( var i in Twease.extendedprops ) if(Twease.extendedprops[i][0] == prop) return true;
 		return false;
 	};
 		
 	//initiate extended methods for Twease, so methods can be called via Twease.method_name()
 	static function initExtendedMethods(nexfuncs:Array, cl):Void{
-		for ( var i in nexfuncs ){
-			Twease[nexfuncs[i]] = cl[nexfuncs[i]];
-		};
+		for ( var i in nexfuncs ) Twease[nexfuncs[i]] = cl[nexfuncs[i]];
 	};
 	
 	//initiate extended props for Twease
@@ -42,9 +38,7 @@ class com.visualcondition.twease.Extend {
 		if (Twease.extendedprops == undefined) Twease.extendedprops = {};
 		for ( var i in nexprops ){
 			var pr:Array = nexprops[i];
-			for ( var j in pr ){
-				Twease.extendedprops[pr[j]] = [pr[j], i];
-			};
+			for ( var j in pr ) Twease.extendedprops[pr[j]] = [pr[j], i];
 		};
 	};
 	

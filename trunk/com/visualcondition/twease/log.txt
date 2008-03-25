@@ -1,7 +1,15 @@
 Twease Change Log
 -----------------
 
-v2.0 Beta (03/10/08)
+Todo:
+  -Filters
+  -More extras
+  -Documentation
+  -Commented source
+  -Possible major core render rewrite
+
+
+v2.0 Beta (03/25/08)
 
   New:
     -Tween startup performance boost eliminates staggered starting of simultaneous tweens
@@ -9,9 +17,9 @@ v2.0 Beta (03/10/08)
     -Twease.tween() rate property allows you to tween at a constant rate instead of a specific duration of time
     -Twease.tween() progress parameter allows you to start a tween at any point in its life 0(start) - 1(finished)
     -Extend methods and automation to extend core Twease methods and tweenable properties
-    *-Colors, Extras, and Texts classes that use new Extend class
+    -Colors, Extras, and Texts classes that use new Extend class
     -Texts class lets you tween Object-strings (var mytext:Object = {text:"A"}) based on a given characterset
-    *-Colors class lets you tween color transformation objects such as tint, brightness and contrast
+    -Colors class lets you tween color transformation objects such as tint, brightness and contrast
     -Twease.render() method allows manual rendering of non-engine managed tween objects
     -Twease.tween() 2nd parameter for sequence and single tween target-overrides 
     -Twease.tween() 3rd parameter for non-managed tween, true makes a new object, passing an object uses that
@@ -22,15 +30,14 @@ v2.0 Beta (03/10/08)
     -Twease: baseprops array and compareInObject method
     
   Changes:
-    -Garbage collection for extended tweens added to standard collection
     -Update loop uses render's return to delete tweens
     -Delay adds 1/1000 second to trigger delay progress check
     -Twease update loop now calls the render() method on activetweens
     -Tween method returns full object of tween, not array
-    -In update function for beziers and rate
+    -In render function for beziers and rate
     -Tween check for baseprops now using compareInObject function
-    -Extend class redone
-    -Line in Twease.tween to implement extended properties
+    -Extend class redone and actually functional
+    -Twease.tween to implement extended properties
     -getTweens method is now in Extras class
     
   Removed:
