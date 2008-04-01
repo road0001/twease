@@ -24,7 +24,12 @@ dynamic class com.visualcondition.twease.Twease {
 		for ( var i:String in arguments ) arguments[i].init();
 	};
 	static function setActive(setactive:Boolean, target:Object, prop:String):Void {
-		var ust:Function = function(apro:Array) { apro[0].starttime = getTimer()-(apro[0].lasttime-apro[0].starttime); }
+		var ust:Function = function(apro:Array) {
+			if(apro.subtween){
+				var sto:Object = apro[0].tweenobject;
+				for ( var u in sto ) sto[u][0].starttime = getTimer()-(sto[u][0].lasttime-sto[u][0].starttime);
+			} else apro[0].starttime = getTimer()-(apro[0].lasttime-apro[0].starttime);
+		}
 		if(prop == undefined){
 			if(setactive) for ( var i:String in tweens[target] ) if(tweens[target][i].active) ust(tweens[target][i]);
 			tweens[target].active = setactive;
