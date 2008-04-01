@@ -2,6 +2,7 @@ Twease Change Log
 -----------------
 
 Todo:
+  -Fix bezier elastic
   -Filters
   -More extras
   -Documentation
@@ -9,7 +10,7 @@ Todo:
   -Possible major core render rewrite
 
 
-v2.0 Beta (03/25/08)
+v2.0 RC (04/01/08)
 
   New:
     -Tween startup performance boost eliminates staggered starting of simultaneous tweens
@@ -45,6 +46,7 @@ v2.0 Beta (03/25/08)
     -Twease.extendedprops (now is dynamically added)
     
   Fixes:
+    -[RC] Subtweens were not updating starttime on setActive, thus causing them to not resume correctly
     -Bug (introduced with update change?) where funcs wouldn't remove themselves because of 0 cycles
     -When stacking props was false, the propcount would never reach 0, resulting in failed GC
     
