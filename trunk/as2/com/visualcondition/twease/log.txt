@@ -7,7 +7,6 @@ Todo:
   -More extras
   -Documentation
   -Commented source
-  -Possible major core render rewrite
 
 
 v2.0 RC (04/01/08)
