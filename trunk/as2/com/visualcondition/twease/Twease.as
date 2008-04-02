@@ -1,5 +1,5 @@
 //
-//  Twease 2.0 Beta - AS2 tweening engine and sequencer
+//  Twease[AS2] 2.0 Beta - AS2 tweening engine and sequencer
 // 
 // 	Copyright (c) 2007 Andrew Fitzgerald - MIT License
 //  Creation: 07/07/07 | Updated: 03/11/08

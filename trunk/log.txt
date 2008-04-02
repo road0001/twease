@@ -1,17 +1,20 @@
 Twease Change Log
 -----------------
-
+[AS2] - AS2 Specific
+[AS3] - AS3 Specific
+No specified AS version - Both versions
+-----------------
 Todo:
   -Fix bezier elastic
   -Filters
   -More extras
   -Documentation
-  -Commented source
+------------------
 
-
-v2.0 RC (04/01/08)
+v2.0 Beta 2 (With AS3!) (04/02/08)
 
   New:
+    -ActionScript 3.0 Ported! Same syntax allows you to use the same tweens across all projects (un-optimized)
     -Tween startup performance boost eliminates staggered starting of simultaneous tweens
     -Twease core now has integrated mulit-point bezier tweening for any property
     -Twease.tween() rate property allows you to tween at a constant rate instead of a specific duration of time

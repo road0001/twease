@@ -1,5 +1,5 @@
 //
-//  Twease Extended Filters
+//  Twease Extended Filters [AS2]
 // 
 // 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License
 //  Creation: 03/25/08
