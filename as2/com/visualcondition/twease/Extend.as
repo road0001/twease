@@ -1,5 +1,5 @@
 //
-//  Twease Extended Beta - Extended Functions For Twease
+//  Twease Extended [AS2] - Extended Functions For Twease
 // 
 // 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License
 //  Creation: 08/21/07 | Updated: 03/25/08

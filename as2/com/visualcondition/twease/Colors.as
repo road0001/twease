@@ -1,5 +1,5 @@
 //
-//  Twease Extended Colors
+//  Twease Extended Colors [AS2]
 //  Color Equations From Fuse Kit - http://www.mosessupposes.com/Fuse/
 // 
 // 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License

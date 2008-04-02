@@ -1,5 +1,5 @@
 //
-//  Twease Extended Extra Features
+//  Twease Extended Extra Features [AS2]
 // 
 // 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License
 //  Creation: 03/25/08

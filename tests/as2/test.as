@@ -96,7 +96,8 @@ class test {
 	//k.filters = [newf];
 		
 	
-	Twease.tween([{_x: 350, _y:380, bezier:[{_x:'-200', _y:'250'}, {_x:'200', _y:'100'}, {_x:0, _y:100}], tint:0xff4d8a, time:5, ease:'easeOutBounce', cycles:-1}], k);
+	Twease.tween([{_x: 350, _y:380, bezier:[{_x:'-200', _y:'250'}, {_x:'200', _y:'100'}, {_x:0, _y:100}], tint:0xff4d8a, time:5, ease:'easeOutElastic', cycles:-1}], k);
+	
 	
 	
 	var tok:Object = {text:"A"};
