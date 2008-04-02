@@ -3,14 +3,14 @@
 //  Color Equations From Fuse Kit - http://www.mosessupposes.com/Fuse/
 // 
 // 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License
-//  Creation: 03/25/08
+//  Original Release: 04/02/08
 //  Author: Andrew Fitzgerald
 //  Homepage: http://play.visualcondition.com/twease/
 //
 
 import com.visualcondition.twease.*;
 class com.visualcondition.twease.Colors {
-	static var version:Number = 1.9;
+	static var version:Number = 1.92;
 	static var cl = com.visualcondition.twease.Colors;
 	static var clname:String = 'Colors';
 	static var exfuncs:Array = ['setColor', 'getColorObject'];

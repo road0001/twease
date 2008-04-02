@@ -2,13 +2,13 @@
 //  Twease Extended [AS2] - Extended Functions For Twease
 // 
 // 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License
-//  Creation: 08/21/07 | Updated: 03/25/08
+//  Original Release: 08/21/07 | Updated: 04/02/08
 //  Author: Andrew Fitzgerald
 //  Homepage: http://play.visualcondition.com/twease/
 //
 import com.visualcondition.twease.*;
 class com.visualcondition.twease.Extend {
-	static var version:Number = 1.9;
+	static var version:Number = 1.92;
 	//standard class init
 	static function init():Void {
 		Twease.extensions.Extend = com.visualcondition.twease.Extend;

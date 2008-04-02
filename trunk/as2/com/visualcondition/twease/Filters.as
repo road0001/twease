@@ -2,7 +2,7 @@
 //  Twease Extended Filters [AS2]
 // 
 // 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License
-//  Creation: 03/25/08
+//  Original Release: 04/02/08
 //  Author: Andrew Fitzgerald
 //  Homepage: http://play.visualcondition.com/twease/
 //
@@ -18,7 +18,7 @@ import com.visualcondition.twease.*;
 import flash.filters.*;
 import flash.display.BitmapData;
 class com.visualcondition.twease.Filters {
-	static var version:Number = 1.9;
+	static var version:Number = 1.92;
 	static var cl = com.visualcondition.twease.Filters;
 	static var clname:String = 'Filters';
 	static var exfuncs:Array = ['filterquality'];

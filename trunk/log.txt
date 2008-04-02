@@ -14,7 +14,7 @@ Todo:
 v2.0 Beta 2 (With AS3!) (04/02/08)
 
   New:
-    -ActionScript 3.0 Ported! Same syntax allows you to use the same tweens across all projects (un-optimized)
+    -[B2] ActionScript 3.0 Ported! Same syntax allows you to use the same tweens across all projects (un-optimized)
     -Tween startup performance boost eliminates staggered starting of simultaneous tweens
     -Twease core now has integrated mulit-point bezier tweening for any property
     -Twease.tween() rate property allows you to tween at a constant rate instead of a specific duration of time
@@ -48,7 +48,7 @@ v2.0 Beta 2 (With AS3!) (04/02/08)
     -Twease.extendedprops (now is dynamically added)
     
   Fixes:
-    -[RC] Subtweens were not updating starttime on setActive, thus causing them to not resume correctly
+    -[B2] Subtweens were not updating starttime on setActive, thus causing them to not resume correctly
     -Bug (introduced with update change?) where funcs wouldn't remove themselves because of 0 cycles
     -When stacking props was false, the propcount would never reach 0, resulting in failed GC
     
