@@ -1,14 +1,14 @@
 //
-//  Twease[AS2] 2.0 Beta - AS2 tweening engine and sequencer
+//  Twease[AS2] 2.0 Beta 2 - AS2 tweening engine and sequencer
 // 
-// 	Copyright (c) 2007 Andrew Fitzgerald - MIT License
-//  Creation: 07/07/07 | Updated: 03/11/08
+// 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License
+//  Original Release: 07/07/07 | Updated: 04/02/08
 //  Author: Andrew Fitzgerald
 //  Homepage: http://play.visualcondition.com/twease/
 //
 
 dynamic class com.visualcondition.twease.Twease {
-	static var version:Number = 1.9;
+	static var version:Number = 1.92;
 	static var updatedepth:Number = 9876543;
 	static var active:Boolean;
 	static var roundresults:Boolean = false;

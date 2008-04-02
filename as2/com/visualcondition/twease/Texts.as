@@ -2,14 +2,14 @@
 //  Twease Extended Texts [AS2]
 // 
 // 	Copyright (c) 2007-2008 Andrew Fitzgerald - MIT License
-//  Creation: 03/25/08
+//  Original Release: 04/02/08
 //  Author: Andrew Fitzgerald
 //  Homepage: http://play.visualcondition.com/twease/
 //
 
 import com.visualcondition.twease.*;
 class com.visualcondition.twease.Texts {
-	static var version:Number = 1.9;
+	static var version:Number = 1.92;
 	static var cl = com.visualcondition.twease.Texts;
 	static var clname:String = 'Texts';
 	static var exfuncs:Array = [];
