@@ -8,7 +8,7 @@
 //
 
 dynamic class com.visualcondition.twease.Twease {
-	static var version:Number = 1.92;
+	static var version:Number = 1.93;
 	static var updatedepth:Number = 9876543;
 	static var active:Boolean;
 	static var roundresults:Boolean = false;

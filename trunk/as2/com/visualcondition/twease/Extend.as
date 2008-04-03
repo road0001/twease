@@ -8,7 +8,7 @@
 //
 import com.visualcondition.twease.*;
 class com.visualcondition.twease.Extend {
-	static var version:Number = 1.92;
+	static var version:Number = 1.93;
 	//standard class init
 	static function init():Void {
 		Twease.extensions.Extend = com.visualcondition.twease.Extend;

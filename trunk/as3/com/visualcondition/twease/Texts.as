@@ -9,7 +9,7 @@
 
 package com.visualcondition.twease {	
 	 public class Texts {
-		public static var version:Number = 1.92;
+		public static var version:Number = 1.93;
 		public static var cl = com.visualcondition.twease.Texts;
 		public static var clname:String = 'Texts';
 		public static var exfuncs:Array = [];
