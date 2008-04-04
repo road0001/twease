@@ -83,8 +83,8 @@ class test {
 	Twease.setColor(k, 'tint', 100, 0x4f5801);
 	
 	
-//	Twease.tween({target:k, tint:0xff0000, tintPercent:80, time:2, delay:0});
-//	Twease.tween({target:k, tint:0xfaf100, tintPercent:80, time:2, delay:0});
+	Twease.tween({target:k, tint:0xff0000, tintPercent:80, time:2, delay:0});
+	Twease.tween({target:k, tint:0xfaf100, tintPercent:80, time:2, delay:0});
 	
 	
 	//Twease.tween({target:k, brightOffset:80, time:2, delay:0, ease:'easeOutBounce', cycles:2});
@@ -96,7 +96,7 @@ class test {
 	//k.filters = [newf];
 		
 	
-	Twease.tween([{_x: 350, _y:380, bezier:[{_x:'-200', _y:'250'}, {_x:'200', _y:'100'}, {_x:0, _y:100}], tint:0xff4d8a, time:5, ease:'easeOutElastic', cycles:-1}], k);
+	//Twease.tween([{_x: 350, _y:380, bezier:[{_x:'-200', _y:'250'}, {_x:'200', _y:'100'}, {_x:0, _y:100}], tint:0xff4d8a, time:5, ease:'easeOutElastic', cycles:-1}], k);
 	
 	
 	
@@ -126,6 +126,7 @@ var pool = Twease.tween({target:k, _x:'100', _y:'150', time:1, delay:.2, cycles:
 		
 	};
 	*/
+	
 
 /*
 
