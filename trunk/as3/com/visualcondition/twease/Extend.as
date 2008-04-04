@@ -50,7 +50,7 @@ package com.visualcondition.twease {
 		};
 
 		//target object (the real thing being tweened) passed as an object, or a string to use a variable in the helper object, or "helper" to use the helper object as the target itself
-		public static function createSubtween(target:Object, prop:String, tto:*, tobj:Object, func:Function, helper:Object):Object{
+		public static function createSubtween(target:Object, prop:String, tto:*, tobj:Object, func:Function, helper:Object = null):Object{
 			var tg:Object = (Twease.tweens[target] == undefined) ? Twease.tweens[target] = {propcount:0} : Twease.tweens[target];
 			if(tg.active == undefined){
 				tg.active = true;
@@ -58,6 +58,7 @@ package com.visualcondition.twease {
 			}
 			var dostack:Boolean = (tobj.stack != undefined) ? tobj.stack : Twease.stacking;
 			if(tg[prop] != undefined && !dostack) tg.propcount--;
+			trace(tg[prop])
 			var tarr:Array = (tg[prop] == undefined || !dostack) ? tg[prop] = [] : tg[prop];
 			if(tarr.active == undefined) {
 				tarr.active = true;
