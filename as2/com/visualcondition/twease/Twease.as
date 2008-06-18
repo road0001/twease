@@ -198,7 +198,7 @@ dynamic class com.visualcondition.twease.Twease {
 		if(ao[0] == undefined){
 			if(active == undefined || active == null) setActive(true);
 			if(tweens == undefined) tweens = {};
-			var delay:Number = (ao.delay == undefined) ? 0.00001 : ao.delay*1000;
+			var delay:Number = (ao.delay == undefined || ao.delay <= 0) ? 0.00001 : ao.delay*1000;
 			var ncycles:Number = (ao.cycles == undefined) ? 1 : ao.cycles;
 			var snt:Number = getTimer();
 			var tg:Object;

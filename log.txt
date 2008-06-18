@@ -49,6 +49,7 @@ v2.0 Beta 2 (With AS3!) (04/02/08)
     -Twease.extendedprops (now is dynamically added)
     
   Fixes:
+    -[B2] If delay was set to 0, it might not call the start tween functions
     -[B2] Subtweens were not updating starttime on setActive, thus causing them to not resume correctly
     -Bug (introduced with update change?) where funcs wouldn't remove themselves because of 0 cycles
     -When stacking props was false, the propcount would never reach 0, resulting in failed GC
@@ -63,7 +64,7 @@ v1.1 (09/10/07)
 		-Twease.stacking allows disabling of tween stacking
 		-Twease.register() for extending Twease
 		-Extend class (beta) (only used for getTweens() for now)
-		-registering Easing allows you to use strings for easesing values - ease:'easeOutBounce'
+		-registering Easing allows you to use strings for easeing values - ease:'easeOutBounce'
 		-Easing class from the Fuse Kit Penner Easing Class
 		-extra1 and extra2 for extra easing args
 		-extendedprops and extensions twease variables
