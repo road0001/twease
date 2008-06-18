@@ -1,6 +1,6 @@
 Open source under the MIT License.
 
-Copyright (c) 2007 Andrew Fitzgerald / visualcondition.com
+Copyright (c) 2007-2008 Andrew Fitzgerald / visualcondition.com
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
