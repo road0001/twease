@@ -58,7 +58,6 @@ package com.visualcondition.twease {
 			}
 			var dostack:Boolean = (tobj.stack != undefined) ? tobj.stack : Twease.stacking;
 			if(tg[prop] != undefined && !dostack) tg.propcount--;
-			trace(tg[prop])
 			var tarr:Array = (tg[prop] == undefined || !dostack) ? tg[prop] = [] : tg[prop];
 			if(tarr.active == undefined) {
 				tarr.active = true;
@@ -69,6 +68,8 @@ package com.visualcondition.twease {
 			var sto:Object = tarr[tarr.push({target: target, originaltobj: tobj, applyfunc: func, helper:helper})-1];
 			sto.temptweentarget = (typeof tto == 'string') ? (tto == 'helper') ? sto.helper : sto.helper[tto] : tto;
 			sto.tweenobject = Twease.tween(tobj, sto.temptweentarget, true);
+			delete tarr.active;
+			delete tarr.propcount;
 			return sto;
 		};
 	}
