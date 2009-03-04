@@ -9,7 +9,7 @@
 
 import com.visualcondition.twease.*;
 class com.visualcondition.twease.Texts {
-	static var version:Number = 1.93;
+	static var version:Number = 1.95;
 	static var cl = com.visualcondition.twease.Texts;
 	static var clname:String = 'Texts';
 	static var exfuncs:Array = [];

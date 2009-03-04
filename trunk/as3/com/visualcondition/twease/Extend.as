@@ -10,7 +10,7 @@
 package com.visualcondition.twease {	
 
 	public class Extend {
-		public static var version:Number = 1.93;
+		public static var version:Number = 1.95;
 		//standard class init
 		public static function init():void {
 			Twease.extensions.Extend = com.visualcondition.twease.Extend;
