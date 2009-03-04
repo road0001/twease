@@ -12,7 +12,7 @@ package com.visualcondition.twease {
 	import flash.geom.ColorTransform;
 	
 	 public class Colors {
-		public static var version:Number = 1.93;
+		public static var version:Number = 1.95;
 		public static var cl = com.visualcondition.twease.Colors;
 		public static var clname:String = 'Colors';
 		public static var exfuncs:Array = ['setColor', 'getColorObject'];

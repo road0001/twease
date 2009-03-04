@@ -8,7 +8,7 @@
 //
 
 dynamic class com.visualcondition.twease.Twease {
-	static var version:Number = 1.93;
+	static var version:Number = 1.95;
 	static var updatedepth:Number = 9876543;
 	static var active:Boolean;
 	static var roundresults:Boolean = false;
@@ -257,7 +257,7 @@ dynamic class com.visualcondition.twease.Twease {
 								var ftv:Number = tarr[tarr.length-1].startpos;
 								ftv = (ftv == undefined) ? ((i == 'index') ? ntarg[newa[q][s][0]] : ntarg[prop]) : ftv;
 								var newval:Number = (typeof(value) == 'string') ? ftv + Number(value) : value;
-								var dif:Number = (ftv > newval) ? -1*Math.abs(ftv-newval) : Math.abs(ftv-newval);
+								var dif:Number = (ftv > newval) ? (newval-ftv) : -(ftv-newval);
 								var bzarr:Array = [];
 								var beza:Array = (ao.bezier.length != undefined) ? ao.bezier : [ao.bezier];
 								for ( var b in beza ){if(beza[b][prop] != undefined) bzarr.push((typeof(beza[b][prop]) == 'string') ? ftv + Number(beza[b][prop]) : beza[b][prop]);};

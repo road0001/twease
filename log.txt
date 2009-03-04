@@ -5,17 +5,18 @@ Twease Change Log
 No specified AS version - Both versions
 -----------------
 Todo:
-  -realtime start vals
+  -replace all Math.abs
+  -realtime start vals (in as2, as3 is done)
   -Fix bezier elastic
-  -Filters
-  -More extras
   -Documentation
 ------------------
 
-v2.0 Beta 2 (With AS3!) (04/02/08)
+v2.0 Beta 2 (With AS3!) (03/03/09)
 
   New:
-    -[B2] ActionScript 3.0 Ported! Same syntax allows you to use the same tweens across all projects (un-optimized)
+    -[AS3] ActionScript 3.0 Ported! Same syntax allows you to use the same tweens across all projects (un-optimized)
+    -[AS3] now uses Dictionaries to store tweens
+    -[AS3] realtime values, start positions now assigned in post delay tween starts instead of creation
     -Tween startup performance boost eliminates staggered starting of simultaneous tweens
     -Twease core now has integrated mulit-point bezier tweening for any property
     -Twease.tween() rate property allows you to tween at a constant rate instead of a specific duration of time
@@ -34,6 +35,7 @@ v2.0 Beta 2 (With AS3!) (04/02/08)
     -Twease: baseprops array and compareInObject method
     
   Changes:
+    -newtween var dif optimized (removed Math.abs)
     -Update loop uses render's return to delete tweens
     -Delay adds 1/1000 second to trigger delay progress check
     -Twease update loop now calls the render() method on activetweens
@@ -49,8 +51,10 @@ v2.0 Beta 2 (With AS3!) (04/02/08)
     -Twease.extendedprops (now is dynamically added)
     
   Fixes:
-    -[B2] If delay was set to 0, it might not call the start tween functions
-    -[B2] Subtweens were not updating starttime on setActive, thus causing them to not resume correctly
+    -[AS3] fixed start and update funcs for no queue
+    -[AS3] fixed sequence bug with ending queues
+    -If delay was set to 0, it might not call the start tween functions
+    -Subtweens were not updating starttime on setActive, thus causing them to not resume correctly
     -Bug (introduced with update change?) where funcs wouldn't remove themselves because of 0 cycles
     -When stacking props was false, the propcount would never reach 0, resulting in failed GC
     

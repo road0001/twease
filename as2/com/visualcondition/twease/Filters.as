@@ -18,7 +18,7 @@ import com.visualcondition.twease.*;
 import flash.filters.*;
 import flash.display.BitmapData;
 class com.visualcondition.twease.Filters {
-	static var version:Number = 1.93;
+	static var version:Number = 1.95;
 	static var cl = com.visualcondition.twease.Filters;
 	static var clname:String = 'Filters';
 	static var exfuncs:Array = ['filterquality'];
