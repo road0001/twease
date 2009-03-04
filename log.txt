@@ -33,6 +33,7 @@ v2.0 Beta 2 (With AS3!) (03/03/09)
     -Cycles support for function-only calls including delays
     -Colors: static color functions: 'setColor', 'getColorObject'
     -Twease: baseprops array and compareInObject method
+    -[AS3] added easeProxy to handle other ease functions
     
   Changes:
     -newtween var dif optimized (removed Math.abs)
