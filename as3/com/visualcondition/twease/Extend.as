@@ -68,6 +68,7 @@ package com.visualcondition.twease {
 			var sto:Object = tarr[tarr.push({target: target, originaltobj: tobj, applyfunc: func, helper:helper})-1];
 			sto.temptweentarget = (typeof tto == 'string') ? (tto == 'helper') ? sto.helper : sto.helper[tto] : tto;
 			sto.tweenobject = Twease.tween(tobj, sto.temptweentarget, true);
+			sto.tweenobject.subtween = true;
 			delete tarr.active;
 			delete tarr.propcount;
 			return sto;

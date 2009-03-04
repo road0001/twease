@@ -7,6 +7,7 @@ No specified AS version - Both versions
 Todo:
   -replace all Math.abs
   -realtime start vals (in as2, as3 is done)
+  -fix text class (possible color subtweenings too)
   -Fix bezier elastic
   -Documentation
 ------------------
@@ -14,7 +15,7 @@ Todo:
 v2.0 Beta 2 (With AS3!) (03/03/09)
 
   New:
-    -[AS3] ActionScript 3.0 Ported! Same syntax allows you to use the same tweens across all projects (un-optimized)
+    -[AS3] ActionScript 3.0 Ported! Same syntax allows you to use the same tweens across all projects
     -[AS3] now uses Dictionaries to store tweens
     -[AS3] realtime values, start positions now assigned in post delay tween starts instead of creation
     -Tween startup performance boost eliminates staggered starting of simultaneous tweens
