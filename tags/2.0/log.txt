@@ -1,0 +1,95 @@
+Twease Change Log
+-----------------
+[AS2] - AS2 Specific
+[AS3] - AS3 Specific
+No specified AS version - Both versions
+-----------------
+
+v2.0 (With AS3!) (03/04/09)
+
+  New:
+    -[AS3] ActionScript 3.0 Ported! Same syntax allows you to use the same tweens across all projects
+    -[AS3] now uses Dictionaries to store tweens
+    -[AS3] realtime values, start positions now assigned in post delay tween starts instead of creation
+    -Tween startup performance boost eliminates staggered starting of simultaneous tweens
+    -Twease core now has integrated mulit-point bezier tweening for any property
+    -Twease.tween() rate property allows you to tween at a constant rate instead of a specific duration of time
+    -Twease.tween() progress parameter allows you to start a tween at any point in its life 0(start) - 1(finished)
+    -Extend methods and automation to extend core Twease methods and tweenable properties
+    -Colors, Extras, and Texts classes that use new Extend class
+    -Texts class lets you tween Object-strings (var mytext:Object = {text:"A"}) based on a given characterset
+    -Colors class lets you tween color transformation objects such as tint, brightness and contrast
+    -Twease.render() method allows manual rendering of non-engine managed tween objects
+    -Twease.tween() 2nd parameter for sequence and single tween target-overrides 
+    -Twease.tween() 3rd parameter for non-managed tween, true makes a new object, passing an object uses that
+    -Tween object has easeposition property that returns the position of a tween on an ease path (0-1)
+    -Stack option in tween call to enable stacking on a per-tween basis
+    -Cycles support for function-only calls including delays
+    -Colors: static color functions: 'setColor', 'getColorObject'
+    -Twease: baseprops array and compareInObject method
+    -[AS3] added easeProxy to handle other ease functions
+    
+  Changes:
+    -[AS3] Changed Math.round() to int()
+    -All Math.abs() and Math.floor() replaced and optimized
+    -newtween var dif optimized (removed Math.abs)
+    -Update loop uses render's return to delete tweens
+    -Delay adds 1/1000 second to trigger delay progress check
+    -Twease update loop now calls the render() method on activetweens
+    -Tween method returns full object of tween, not array
+    -In render function for beziers and rate
+    -Tween check for baseprops now using compareInObject function
+    -Extend class redone and actually functional
+    -Twease.tween to implement extended properties
+    -getTweens method is now in Extras class
+    
+  Removed:
+    -Undefined checks in Twease.update loop (performance boost?)
+    -Twease.extendedprops (now is dynamically added)
+    
+  Fixes:
+    -[AS3] fixed start and update funcs for no queue
+    -[AS3] fixed sequence bug with ending queues
+    -If delay was set to 0, it might not call the start tween functions
+    -Subtweens were not updating starttime on setActive, thus causing them to not resume correctly
+    -Bug (introduced with update change?) where funcs wouldn't remove themselves because of 0 cycles
+    -When stacking props was false, the propcount would never reach 0, resulting in failed GC
+    
+
+v1.1 (09/10/07)
+
+	New:
+		-Tweening of full arrays with the array:[x, y, z] prop
+		-Tweening of a specific index value from an array (array[i]) with the index[i, value] prop
+		-Twease core is now less than 200 lines of code, yet faster with more features!
+		-Twease.stacking allows disabling of tween stacking
+		-Twease.register() for extending Twease
+		-Extend class (beta) (only used for getTweens() for now)
+		-registering Easing allows you to use strings for easeing values - ease:'easeOutBounce'
+		-Easing class from the Fuse Kit Penner Easing Class
+		-extra1 and extra2 for extra easing args
+		-extendedprops and extensions twease variables
+	
+	Changes:
+		-misc code formating changes
+		-getTweens() now in the Extend class
+		-tween() internal function is shorter, rearranged a bit, and slightly faster
+		-moved getTimer() call in update out of the loops
+	
+	Removed:
+		-tween() active check for func tweens
+	
+	Fixes:
+		-startpos in tween() to ftv possible bug
+		-getTweens() active if/else
+		-delay for func only tweens
+
+
+v1.01 (07/27/07)
+	Fixes:
+		-delay and cycle issue
+		-garbage collection bug killing engine
+
+
+v1.0 (07/07/07)
+	Initial Release
