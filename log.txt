@@ -4,15 +4,8 @@ Twease Change Log
 [AS3] - AS3 Specific
 No specified AS version - Both versions
 -----------------
-Todo:
-  -replace all Math.abs
-  -realtime start vals (in as2, as3 is done)
-  -fix text class (possible color subtweenings too)
-  -Fix bezier elastic
-  -Documentation
-------------------
 
-v2.0 Beta 2 (With AS3!) (03/03/09)
+v2.0 (With AS3!) (03/04/09)
 
   New:
     -[AS3] ActionScript 3.0 Ported! Same syntax allows you to use the same tweens across all projects
@@ -37,6 +30,8 @@ v2.0 Beta 2 (With AS3!) (03/03/09)
     -[AS3] added easeProxy to handle other ease functions
     
   Changes:
+    -[AS3] Changed Math.round() to int()
+    -All Math.abs() and Math.floor() replaced and optimized
     -newtween var dif optimized (removed Math.abs)
     -Update loop uses render's return to delete tweens
     -Delay adds 1/1000 second to trigger delay progress check

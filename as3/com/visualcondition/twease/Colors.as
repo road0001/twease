@@ -12,7 +12,7 @@ package com.visualcondition.twease {
 	import flash.geom.ColorTransform;
 	
 	 public class Colors {
-		public static var version:Number = 1.95;
+		public static var version:Number = 2.0;
 		public static var cl = com.visualcondition.twease.Colors;
 		public static var clname:String = 'Colors';
 		public static var exfuncs:Array = ['setColor', 'getColorObject'];
@@ -29,19 +29,14 @@ package com.visualcondition.twease {
 
 		//sets up special tween property and inserts an applier to update the prop
 		public static function setup(prop:String, tweenobj:Object):void {
-			
 			if(colorholder[tweenobj.target] == undefined){
 				colorholder[tweenobj.target] = {cc:tweenobj.target.transform.colorTransform, lc:{}};
 			}
-			
 			var amount:Number = (prop == 'tint') ? (tweenobj.tintPercent == undefined) ? 1 : tweenobj.tintPercent : tweenobj[prop];
 			var cc:* = (colorholder[tweenobj.target] == undefined) ? null : colorholder[tweenobj.target].lc;
 			var temptween:Object = getColorObject(prop, amount, tweenobj[prop]);
-	       // colorholder[tweenobj.target].lc = temptween;
-	
 			for ( var i in tweenobj ) if(Twease.compareInObject(i, Twease.baseprops)) temptween[i] = tweenobj[i];
 			Extend.createSubtween(tweenobj.target, clname, colorholder[tweenobj.target].cc, temptween, colorupdater);
-			
 		};
 
 		//this is the function that gets called on the applier update every frame
@@ -53,8 +48,6 @@ package com.visualcondition.twease {
 		public static function setColor(target:Object, type:String, amt:Number, rgb:Object, comobj:Object):void {
 			var nco:Object = getColorObject(type, amt, rgb, comobj);
 			target.transform.colorTransform = nco;
-			
-			//(new ColorTransform(target)).setTransform(nco);
 			colorholder[target] = nco;
 		}
 
@@ -70,9 +63,9 @@ package com.visualcondition.twease {
 				cr = cco.redOffset;
 				cb = cco.blueOffset;
 				cg = cco.greenOffset;
-				cr2 = Math.round(cr/2);
-				cb2 = Math.round(cb/2);
-				cg2 = Math.round(cg/2);
+				cr2 = int(cr/2);
+				cb2 = int(cb/2);
+				cg2 = int(cg/2);
 			} else {
 				cr = cb = cg = 255;
 				cr2 = cb2 = cg2 = 128;

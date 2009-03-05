@@ -36,14 +36,15 @@ class test {
 		
 		//Twease.collectionrate = 5000;
 		
-	//	Twease.tween({target:t, _xscale:500, _yscale:500, rate:3, ease:Twease.easeOut, cycles:-1, startfunc:f1, func:f2, delay:0});
+		//Twease.tween({target:t, _xscale:500, _yscale:500, time:3, ease:'easeOutSine', cycles:-1, delay:0});
 		
-	//	Twease.tween([{target:k, _x:'50', time:1}, {target:t, _xscale:500, _yscale:500, time:3, ease:Twease.easeOut, delay:.5}]);
+		Twease.tween([{target:k, _x:'50', time:1}, {target:t, _xscale:500, _yscale:500, time:3, ease:Twease.easeOut, delay:.5}]);
+	
 		
 	//	Twease.tween({delay:2, func:f1});
 	
 		
-//	var s = Twease.tween([{delay: 1, time:2, _rotation:'365'}, {delay:2, func:f1}, {target:t, _x:100, _y:100, _alpha:50, delay:0, ease:Twease.easeOut, time:2, cycles:3, func:function(to,po,q){if(Twease.tweens[to][po][0].cycles == 1){Twease.advance(q)}}}, {time:2, _rotation:'25'}, {time:2, _rotation:'-55'}, {time:2, _rotation:0}], k);
+	var s = Twease.tween([{delay: 1, time:2, _rotation:'365'}, {delay:2, func:f1}, {target:t, _x:100, _y:100, _alpha:50, delay:0, ease:Twease.easeOut, time:2, cycles:3, func:function(to,po,q){if(Twease.tweens[to][po][0].cycles == 1){Twease.advance(q)}}}, {time:2, _rotation:'25'}, {time:2, _rotation:'-55'}, {time:2, _rotation:0}], k);
 		
 		
 		
@@ -80,11 +81,11 @@ class test {
 	
 	Twease.combinecolors = true;
 	
-	Twease.setColor(k, 'tint', 100, 0x4f5801);
+	//Twease.setColor(k, 'tint', 100, 0x4f5801);
 	
 	
-	Twease.tween({target:k, tint:0xff0000, tintPercent:80, time:2, delay:0});
-	Twease.tween({target:k, tint:0xfaf100, tintPercent:80, time:2, delay:0});
+	//Twease.tween({target:k, tint:0xff0000, tintPercent:80, time:2, delay:0});
+	//Twease.tween({target:k, tint:0xfaf100, tintPercent:80, time:2, delay:0});
 	
 	
 	//Twease.tween({target:k, brightOffset:80, time:2, delay:0, ease:'easeOutBounce', cycles:2});
@@ -96,7 +97,7 @@ class test {
 	//k.filters = [newf];
 		
 	
-	//Twease.tween([{_x: 350, _y:380, bezier:[{_x:'-200', _y:'250'}, {_x:'200', _y:'100'}, {_x:0, _y:100}], tint:0xff4d8a, time:5, ease:'easeOutElastic', cycles:-1}], k);
+	//Twease.tween([{_x: 350, _y:380, bezier:[{_x:'-200', _y:'250'}, {_x:'200', _y:'100'}, {_x:0, _y:100}], tint:0xff4d8a, time:5, ease:'easeOutBounce', cycles:-1}], k);
 	
 	
 	
