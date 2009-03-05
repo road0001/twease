@@ -9,7 +9,7 @@
 
 import com.visualcondition.twease.*;
 class com.visualcondition.twease.Extras {
-	static var version:Number = 1.95;
+	static var version:Number = 2.0;
 	static var cl = com.visualcondition.twease.Extras;
 	static var clname:String = 'Extras';
 	static var exfuncs:Array = ['getTweens'];

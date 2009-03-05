@@ -10,7 +10,7 @@
 
 import com.visualcondition.twease.*;
 class com.visualcondition.twease.Colors {
-	static var version:Number = 1.95;
+	static var version:Number = 2.0;
 	static var cl = com.visualcondition.twease.Colors;
 	static var clname:String = 'Colors';
 	static var exfuncs:Array = ['setColor', 'getColorObject'];

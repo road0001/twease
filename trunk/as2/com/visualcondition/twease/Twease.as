@@ -8,7 +8,7 @@
 //
 
 dynamic class com.visualcondition.twease.Twease {
-	static var version:Number = 1.95;
+	static var version:Number = 2.0;
 	static var updatedepth:Number = 9876543;
 	static var active:Boolean;
 	static var roundresults:Boolean = false;
@@ -105,7 +105,7 @@ dynamic class com.visualcondition.twease.Twease {
 			o.func(o.target, o.prop, o.queue[0]);
 			if(o.cycles == undefined || o.cycles == 0){
 				tweenholder.shift();
-				if(queue[o.queue[0]].position == o.queue[1]) advance(o.queue[0], o.queue[1]+1);
+				if(o.queue != undefined) if(queue[o.queue[0]].position == o.queue[1] && queue[o.queue[0]].position != queue[o.queue[0]].length-1) advance(o.queue[0], o.queue[1]+1);
 			}
 			var ocyc:Number = o.cycles;
 			o = tweenholder[0];
@@ -115,9 +115,9 @@ dynamic class com.visualcondition.twease.Twease {
 				o.starttime = gtt;
 				o.startpos = o.target[o.prop];
 				o.newval = (typeof(o.value) == 'string') ? o.startpos + Number(o.value) : o.value;
-				o.dif = (o.startpos > o.newval) ? -1*Math.abs(o.target[o.prop]-o.newval) : Math.abs(o.target[o.prop]-o.newval);
+				o.dif = (o.startpos > o.newval) ? (o.newval-o.startpos) : -(o.startpos-o.newval);
 				o.rate = (o.rate != undefined) ? -1*o.rate : undefined;
-				o.rateleft = Math.abs(o.dif);
+				o.rateleft = (o.dif < 0) ? -o.dif : o.dif;
 				o.bezier.reverse();
 			} else return true;
 		} else {
@@ -127,8 +127,9 @@ dynamic class com.visualcondition.twease.Twease {
 				var res:Number, nres:Number;
 				if(o.rate == undefined) res = o.ease(tmr, o.startpos, o.dif, o.time, o.extra1, o.extra2);
 				else{
-					res = (o.newval-(Math.abs(o.rateleft/o.rate)*o.rate));
-					o.rateleft -= Math.abs(o.rate);
+					var rlr:Number = (o.rateleft/o.rate);
+					res = (o.newval-(((rlr < 0) ? -rlr : rlr)*o.rate));
+					o.rateleft -= (o.rate < 0) ? -o.rate : o.rate;
 				}
 				o.easeposition = (res-o.startpos)/(o.newval-o.startpos);
 				if(o.bezier.length < 1) nres = res;
@@ -139,13 +140,13 @@ dynamic class com.visualcondition.twease.Twease {
 					var ipos:Number = (o.easeposition-(bpos*(1/o.bezier.length)))*o.bezier.length;
 					if (bpos == 0){
 						b1 = o.startpos;
-						b2 = (o.bezier[0]+o.bezier[1])/2;
+						b2 = (o.bezier[0]+o.bezier[1])*.5;
 					} else if (bpos == o.bezier.length-1){
-						b1 = (o.bezier[bpos-1]+o.bezier[bpos])/2;
+						b1 = (o.bezier[bpos-1]+o.bezier[bpos])*.5;
 						b2 = o.newval;
 					} else{
-						b1 = (o.bezier[bpos-1]+o.bezier[bpos])/2;
-						b2 = (o.bezier[bpos]+o.bezier[bpos+1])/2;
+						b1 = (o.bezier[bpos-1]+o.bezier[bpos])*.5;
+						b2 = (o.bezier[bpos]+o.bezier[bpos+1])*.5;
 					}
 					nres = b1+ipos*(2*(1-ipos)*(o.bezier[bpos]-b1) + ipos*(b2 - b1));
 				}
@@ -156,6 +157,21 @@ dynamic class com.visualcondition.twease.Twease {
 					o.oldelay = o.delay;
 					o.delay = 0;
 					o.starttime = gtt;
+					//new start props
+					var ftv:Number = o.target[o.prop];
+					var newval:Number = (typeof o.value == 'string') ? ftv + Number(o.value) : o.value;
+					var dif:Number = (ftv > newval) ? (newval-ftv) : -(ftv-newval);
+					var bzarr:Array = [];
+					if(o.oldbezier != undefined){
+						var beza:Array = (o.oldbezier.length != undefined) ? o.oldbezier : [o.oldbezier];
+						if(beza.length > 0){ for ( var b in beza ){ if(beza[b][o.prop] != undefined) bzarr.push((typeof beza[b][o.prop] == 'string') ? ftv + Number(beza[b][o.prop]) : beza[b][o.prop]);};}
+					}
+					o.rate = (o.rate != undefined) ? ((ftv > newval) ? -1*o.rate : o.rate) : undefined;
+					o.newval = newval;
+					o.dif = dif;
+					o.startpos = ftv;
+					o.bezier = bzarr;
+					o.rateleft = (dif < 0) ? -dif : dif;
 					if(o.rate != undefined){
 						o.rateleft -= o.rateleft*o.startprogress;
 						o.target[o.prop] = o.startpos += o.dif *= o.startprogress;
@@ -253,15 +269,9 @@ dynamic class com.visualcondition.twease.Twease {
 									tarr.active = true;
 									tg.propcount++;
 									if(nonm != true) activetweens[ntarg][prop] = true;
-								}								
-								var ftv:Number = tarr[tarr.length-1].startpos;
-								ftv = (ftv == undefined) ? ((i == 'index') ? ntarg[newa[q][s][0]] : ntarg[prop]) : ftv;
-								var newval:Number = (typeof(value) == 'string') ? ftv + Number(value) : value;
-								var dif:Number = (ftv > newval) ? (newval-ftv) : -(ftv-newval);
-								var bzarr:Array = [];
-								var beza:Array = (ao.bezier.length != undefined) ? ao.bezier : [ao.bezier];
-								for ( var b in beza ){if(beza[b][prop] != undefined) bzarr.push((typeof(beza[b][prop]) == 'string') ? ftv + Number(beza[b][prop]) : beza[b][prop]);};
-								tarr.push({target:ntarg, cycles:ncycles, prop:prop, ease:ease, starttime:snt, queue:ao.queue, startpos:ftv, value:value, dif:dif, newval:newval, time:(ao.time == undefined && ao.rate == undefined) ? 0 : ao.time*1000, rate:(ao.rate != undefined) ? ((ftv > newval) ? -1*ao.rate : ao.rate) : undefined, func:ao.func, startfunc:ao.startfunc, upfunc:ao.upfunc, round:(ao.round == undefined) ? roundresults : ao.round, delay:delay+1, extra1:ao.extra1, extra2:ao.extra2, bezier:bzarr, easeposition:null, rateleft:Math.abs(dif), startprogress:(ao.progress == undefined) ? 0 : ao.progress, progdif:0});
+								}
+								//old vars here
+								tarr.push({target:ntarg, cycles:ncycles, prop:prop, ease:ease, starttime:snt, queue:ao.queue, startpos:prop, value:value, time:(ao.time == undefined && ao.rate == undefined) ? 0 : ao.time*1000, rate:ao.rate, func:ao.func, startfunc:ao.startfunc, upfunc:ao.upfunc, round:(ao.round == undefined) ? roundresults : ao.round, delay:delay, extra1:ao.extra1, extra2:ao.extra2, oldbezier:ao.bezier, easeposition:null, startprogress:(ao.progress == undefined) ? 0 : ao.progress, progdif:0});
 							};
 						};
 					}
